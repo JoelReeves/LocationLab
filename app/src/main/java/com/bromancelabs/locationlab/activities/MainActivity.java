@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bromancelabs.locationlab.R;
+import com.bromancelabs.locationlab.util.PlayServicesUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -51,7 +52,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     protected void onStop() {
         // disconnect the client
-        googleApiClient.disconnect();
+        if (googleApiClient.isConnected() || googleApiClient.isConnecting()) {
+            googleApiClient.disconnect();
+        }
         super.onStop();
     }
 
@@ -84,7 +87,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.d(TAG, "GoogleApiClient connection failed");
+        Log.d(TAG, "GoogleApiClient connection failed: " + connectionResult.toString());
+        PlayServicesUtil.displayGoogleErrorDialog(this, connectionResult.getErrorCode());
     }
 
     @Override
