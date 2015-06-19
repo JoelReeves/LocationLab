@@ -16,13 +16,18 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
-    private TextView txtLocation;
+    private TextView txtLatitude;
+    private TextView txtLongitude;
+    private TextView txtUpdatedTime;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
 
@@ -38,7 +43,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        txtLocation = (TextView) findViewById(R.id.txtLocation);
+        txtLatitude = (TextView) findViewById(R.id.txtLatitude);
+        txtLongitude = (TextView) findViewById(R.id.txtLongitude);
+        txtUpdatedTime = (TextView) findViewById(R.id.txt_updated_time);
     }
 
     @Override
@@ -75,8 +82,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onLocationChanged(Location location) {
-        final String locationLatitude = String.valueOf(location.getLatitude());
-        txtLocation.setText(locationLatitude);
+        final String latitude = String.valueOf(location.getLatitude());
+        final String longitude = String.valueOf(location.getLongitude());
+        final String updateTime = DateFormat.getTimeInstance().format(new Date());
+
+        txtLatitude.setText("Latitude: " + latitude);
+        txtLongitude.setText("Longitude: " + longitude);
+        txtUpdatedTime.setText("Last Updated: " + updateTime);
     }
 
     @Override
