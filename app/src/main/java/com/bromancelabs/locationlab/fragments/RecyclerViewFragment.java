@@ -19,7 +19,6 @@ import java.util.Collections;
 
 public class RecyclerViewFragment extends Fragment {
     private ArrayList<RecyclerItem> recyclerItems = new ArrayList<>();
-    private static final int NUMBER_OF_ACTIVITIES = 1;
 
     public RecyclerViewFragment() {}
 
@@ -60,10 +59,11 @@ public class RecyclerViewFragment extends Fragment {
         // retrieves activity names and descriptions from XML
         String[] activityNames = getResources().getStringArray(R.array.activity_names);
         String[] activityDescriptions = getResources().getStringArray(R.array.activity_descriptions);
-        RecyclerItem[] items = new RecyclerItem[NUMBER_OF_ACTIVITIES];
+        final int size = activityNames.length;
+        RecyclerItem[] items = new RecyclerItem[size];
 
         // adding both String array elements into the RecyclerItem array
-        for (int i = 0; i < NUMBER_OF_ACTIVITIES; i++) {
+        for (int i = 0; i < size; i++) {
             items[i] = new RecyclerItem(activityNames[i], activityDescriptions[i]);
         }
 
