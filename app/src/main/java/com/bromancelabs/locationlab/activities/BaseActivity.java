@@ -16,6 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 

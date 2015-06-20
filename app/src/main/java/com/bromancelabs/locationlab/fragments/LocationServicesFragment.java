@@ -1,11 +1,13 @@
-package com.bromancelabs.locationlab.activities;
+package com.bromancelabs.locationlab.fragments;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bromancelabs.locationlab.R;
@@ -19,10 +21,9 @@ import com.google.android.gms.location.LocationServices;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+public class LocationServicesFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = LocationServicesFragment.class.getSimpleName();
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
     private TextView txtLatitude;
@@ -31,33 +32,38 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
 
+    public LocationServicesFragment() {};
+
+    public static LocationServicesFragment newInstance() {return new LocationServicesFragment();}
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_location_services, container, false);
 
         // Created instance of Google API client using Location Services
-        googleApiClient = new GoogleApiClient.Builder(this)
+        googleApiClient = new GoogleApiClient.Builder(getActivity())
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        txtLatitude = (TextView) findViewById(R.id.txtLatitude);
-        txtLongitude = (TextView) findViewById(R.id.txtLongitude);
-        txtUpdatedTime = (TextView) findViewById(R.id.txt_updated_time);
+        txtLatitude = (TextView) v.findViewById(R.id.txtLatitude);
+        txtLongitude = (TextView) v.findViewById(R.id.txtLongitude);
+        txtUpdatedTime = (TextView) v.findViewById(R.id.txtUpdatedTime);
+
+        return v;
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
-
         // connect the client
         googleApiClient.connect();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         // disconnect the client
         googleApiClient.disconnect();
         super.onStop();
@@ -98,28 +104,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(TAG, "GoogleApiClient connection failed: " + connectionResult.toString());
-        PlayServicesUtil.displayGoogleErrorDialog(this, connectionResult.getErrorCode());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        PlayServicesUtil.displayGoogleErrorDialog(getActivity(), connectionResult.getErrorCode());
     }
 }

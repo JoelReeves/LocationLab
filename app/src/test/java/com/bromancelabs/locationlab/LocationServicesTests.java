@@ -2,43 +2,42 @@ package com.bromancelabs.locationlab;
 
 import android.widget.TextView;
 
-import com.bromancelabs.locationlab.activities.MainActivity;
+import com.bromancelabs.locationlab.fragments.LocationServicesFragment;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import static com.bromancelabs.locationlab.support.Assert.assertViewIsVisible;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.robolectric.util.SupportFragmentTestUtil.startFragment;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-public class MainActivityTests {
+public class LocationServicesTests {
 
-    private MainActivity activity;
+    private LocationServicesFragment fragment;
     private TextView latitude;
     private TextView longitude;
     private TextView updatedTime;
 
     @Before
     public void setup() throws Exception {
-        activity = Robolectric.buildActivity(MainActivity.class)
-                .create()
-                .start()
-                .resume()
-                .get();
+        fragment = LocationServicesFragment.newInstance();
+        startFragment(fragment);
 
-        latitude = (TextView) activity.findViewById(R.id.txtLatitude);
-        longitude = (TextView) activity.findViewById(R.id.txtLongitude);
-        updatedTime = (TextView) activity.findViewById(R.id.txt_updated_time);
+        latitude = (TextView) fragment.getView().findViewById(R.id.txtLatitude);
+        longitude = (TextView) fragment.getView().findViewById(R.id.txtLongitude);
+        updatedTime = (TextView) fragment.getView().findViewById(R.id.txtUpdatedTime);
     }
 
     @Test
-    public void activityNotNull() throws Exception {
-        assertNotNull(activity);
+    public void fragmentNotNull() throws Exception {
+        assertNotNull(fragment);
+        assertTrue(fragment instanceof LocationServicesFragment);
     }
 
     @Test

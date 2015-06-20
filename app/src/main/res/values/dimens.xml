@@ -3,6 +3,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="header_marginTop">60dp</dimen>
+    <dimen name="header_marginBottom">20dp</dimen>
+
+    <dimen name="recyclerview_item_marginTop">5dp</dimen>
+
     <dimen name="location_header_marginBottom">30dp</dimen>
     <dimen name="location_item_marginBottom">10dp</dimen>
 </resources>

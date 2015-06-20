@@ -36,6 +36,7 @@ tasks.withType(Test) {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
     compile 'com.google.android.gms:play-services:7.5.0'
 
     testCompile 'junit:junit:4.12'
@@ -43,7 +44,7 @@ dependencies {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    testCompile ('org.robolectric:robolectric:3.0-SNAPSHOT') {
+    testCompile ('org.robolectric:shadows-support-v4:3.0-SNAPSHOT') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }

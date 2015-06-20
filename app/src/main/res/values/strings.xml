@@ -2,6 +2,24 @@
     <string name="app_name">LocationLab</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Toolbar titles -->
+    <string name="choose_activity">Choose Google API</string>
+    <string name="location_services">Location Services</string>
+
+    <!-- RecyclerView -->
+    <string name="recyclerview_header">Tap each item to go to an activity demonstrating Google location APIs</string>
+
+    <string name="activity_fusedlocationapi">LocationServices</string>
+    <string name="activity_fusedlocationapi_descripion">Using LocationServices API to update device\'s location every 5 seconds</string>
+
+    <string-array name="activity_names">
+        <item>@string/activity_fusedlocationapi</item>
+    </string-array>
+
+    <string-array name="activity_descriptions">
+        <item>@string/activity_fusedlocationapi_descripion</item>
+    </string-array>
+
     <string name="device_location">Device\'s Location</string>
     <string name="txt_latitude">Latitude</string>
     <string name="txt_longitude">Longitude</string>
