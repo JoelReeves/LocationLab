@@ -20,6 +20,7 @@
         <item>@string/activity_fusedlocationapi_descripion</item>
     </string-array>
 
+    <!-- LocationServices -->
     <string name="device_location">Device\'s Location</string>
     <string name="txt_latitude">Latitude</string>
     <string name="txt_longitude">Longitude</string>
