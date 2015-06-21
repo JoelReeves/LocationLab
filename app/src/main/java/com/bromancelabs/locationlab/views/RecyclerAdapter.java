@@ -14,7 +14,7 @@ import com.bromancelabs.locationlab.models.RecyclerItem;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements View.OnClickListener{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
     private ArrayList<RecyclerItem> recyclerItems;
 
     public RecyclerAdapter(ArrayList<RecyclerItem> recyclerItems) {
@@ -31,9 +31,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 .inflate(R.layout.recyclerview_row_item, viewGroup, false);
 
         final ViewHolder holder = new ViewHolder(v);
-
-        holder.activityName.setOnClickListener(this);
-        holder.activityDescription.setOnClickListener(this);
 
         holder.activityName.setTag(holder);
         holder.activityDescription.setTag(holder);
@@ -59,41 +56,44 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return recyclerItems.get(position);
     }
 
-    @Override
-    public void onClick(View v) {
-        ViewHolder holder = (ViewHolder) v.getTag();
-
-        final Intent intent;
-        final Context context = v.getContext();
-
-        /*if (v.getId() == holder.activityName.getId() || v.getId() == holder.activityDescription.getId()) {
-            switch (holder.getLayoutPosition()) {
-                case 0:
-                    intent = new Intent(context, LocationServicesActivity.class);
-                    context.startActivity(intent);
-                    break;
-            }
-        }*/
-
-        if (v instanceof TextView) {
-            switch (holder.getLayoutPosition()) {
-                case 0:
-                    intent = new Intent(context, LocationServicesActivity.class);
-                    context.startActivity(intent);
-                    break;
-            }
-        }
-    }
-
     // Create the ViewHolder class to keep references to your views
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView activityName;
         public TextView activityDescription;
 
         public ViewHolder(View view) {
             super(view);
             activityName = (TextView) view.findViewById(R.id.txtActivityName);
+            activityName.setOnClickListener(this);
+
             activityDescription = (TextView) view.findViewById(R.id.txtActivityDescription);
+            activityDescription.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            ViewHolder holder = (ViewHolder) v.getTag();
+
+            final Intent intent;
+            final Context context = v.getContext();
+
+            /*if (v.getId() == holder.activityName.getId() || v.getId() == holder.activityDescription.getId()) {
+            switch (holder.getLayoutPosition()) {
+                case 0:
+                    intent = new Intent(context, LocationServicesActivity.class);
+                    context.startActivity(intent);
+                    break;
+            }
+            }*/
+
+            if (v instanceof TextView) {
+                switch (holder.getLayoutPosition()) {
+                    case 0:
+                        intent = new Intent(context, LocationServicesActivity.class);
+                        context.startActivity(intent);
+                        break;
+                }
+            }
         }
     }
 }
