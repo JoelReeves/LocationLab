@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/recyclerviewHeader"
         style="@style/WrapContent"
         android:text="@string/recyclerview_header"
         android:textAppearance="?android:textAppearanceMedium"

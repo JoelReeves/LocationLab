@@ -1,5 +1,7 @@
 package com.bromancelabs.locationlab;
 
+import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bromancelabs.locationlab.fragments.LocationServicesFragment;
@@ -17,9 +19,9 @@ import static org.robolectric.util.SupportFragmentTestUtil.startFragment;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-public class LocationServicesTests {
+public class LocationServicesFragmentTests {
 
-    private LocationServicesFragment fragment;
+    private Fragment fragment;
     private TextView latitude;
     private TextView longitude;
     private TextView updatedTime;
@@ -29,9 +31,9 @@ public class LocationServicesTests {
         fragment = LocationServicesFragment.newInstance();
         startFragment(fragment);
 
-        latitude = (TextView) fragment.getView().findViewById(R.id.txtLatitude);
-        longitude = (TextView) fragment.getView().findViewById(R.id.txtLongitude);
-        updatedTime = (TextView) fragment.getView().findViewById(R.id.txtUpdatedTime);
+        latitude = (TextView) getViewById(R.id.txtLatitude);
+        longitude = (TextView) getViewById(R.id.txtLongitude);
+        updatedTime = (TextView) getViewById(R.id.txtUpdatedTime);
     }
 
     @Test
@@ -53,5 +55,9 @@ public class LocationServicesTests {
     @Test
     public void updatedTimeTextIsVisible() throws Exception {
         assertViewIsVisible(updatedTime);
+    }
+
+    private View getViewById(int id) {
+        return fragment.getView().findViewById(id);
     }
 }
