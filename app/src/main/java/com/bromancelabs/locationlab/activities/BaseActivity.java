@@ -36,5 +36,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 
+    protected void setBackNavigation() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
     protected abstract Fragment createFragment();
 }
