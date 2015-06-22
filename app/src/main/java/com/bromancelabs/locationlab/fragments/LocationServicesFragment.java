@@ -21,14 +21,17 @@ import com.google.android.gms.location.LocationServices;
 import java.text.DateFormat;
 import java.util.Date;
 
+import butterknife.ButterKnife;
+import butterknife.FindView;
+
 public class LocationServicesFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
+    @FindView(R.id.txtLatitude) TextView txtLatitude;
+    @FindView(R.id.txtLongitude) TextView txtLongitude;
+    @FindView(R.id.txtUpdatedTime) TextView txtUpdatedTime;
     private static final String TAG = LocationServicesFragment.class.getSimpleName();
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
-    private TextView txtLatitude;
-    private TextView txtLongitude;
-    private TextView txtUpdatedTime;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
 
@@ -39,7 +42,9 @@ public class LocationServicesFragment extends Fragment implements GoogleApiClien
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_location_services, container, false);
+        View view = inflater.inflate(R.layout.fragment_location_services, container, false);
+
+        ButterKnife.bind(this, view);
 
         // Created instance of Google API client using Location Services
         googleApiClient = new GoogleApiClient.Builder(getActivity())
@@ -48,11 +53,7 @@ public class LocationServicesFragment extends Fragment implements GoogleApiClien
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        txtLatitude = (TextView) v.findViewById(R.id.txtLatitude);
-        txtLongitude = (TextView) v.findViewById(R.id.txtLongitude);
-        txtUpdatedTime = (TextView) v.findViewById(R.id.txtUpdatedTime);
-
-        return v;
+        return view;
     }
 
     @Override
@@ -67,6 +68,12 @@ public class LocationServicesFragment extends Fragment implements GoogleApiClien
         // disconnect the client
         googleApiClient.disconnect();
         super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     @Override

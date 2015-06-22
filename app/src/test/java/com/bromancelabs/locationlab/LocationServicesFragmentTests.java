@@ -15,7 +15,7 @@ import org.robolectric.annotation.Config;
 import static com.bromancelabs.locationlab.support.Assert.assertViewIsVisible;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.robolectric.util.SupportFragmentTestUtil.startFragment;
+import static org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFragment;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)

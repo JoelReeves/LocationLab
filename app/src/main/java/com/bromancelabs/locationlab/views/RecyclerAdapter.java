@@ -14,6 +14,9 @@ import com.bromancelabs.locationlab.models.RecyclerItem;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.FindView;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
     private ArrayList<RecyclerItem> recyclerItems;
 
@@ -58,15 +61,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     // Create the ViewHolder class to keep references to your views
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView activityName;
-        public TextView activityDescription;
+        @FindView(R.id.txtActivityName) TextView activityName;
+        @FindView(R.id.txtActivityDescription) TextView activityDescription;
 
         public ViewHolder(View view) {
             super(view);
-            activityName = (TextView) view.findViewById(R.id.txtActivityName);
-            activityName.setOnClickListener(this);
+            ButterKnife.bind(this, view);
 
-            activityDescription = (TextView) view.findViewById(R.id.txtActivityDescription);
+            activityName.setOnClickListener(this);
             activityDescription.setOnClickListener(this);
         }
 

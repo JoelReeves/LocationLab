@@ -17,7 +17,11 @@ import com.bromancelabs.locationlab.views.RecyclerAdapter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import butterknife.ButterKnife;
+import butterknife.FindView;
+
 public class RecyclerViewFragment extends Fragment {
+    @FindView(R.id.recyclerView) RecyclerView recyclerView;
     private ArrayList<RecyclerItem> recyclerItems = new ArrayList<>();
 
     public RecyclerViewFragment() {}
@@ -27,10 +31,9 @@ public class RecyclerViewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_recyclerview, container, false);
+        View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
-        // initialize the RecyclerView
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        ButterKnife.bind(this, view);
 
         // use a LinearLayoutManager for the RecyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -52,7 +55,13 @@ public class RecyclerViewFragment extends Fragment {
         // attaches adapter to the RecyclerView
         recyclerView.setAdapter(adapter);
 
-        return v;
+        return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     private void initializeItems() {

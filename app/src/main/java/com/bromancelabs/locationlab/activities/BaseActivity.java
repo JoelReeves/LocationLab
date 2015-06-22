@@ -7,14 +7,19 @@ import android.support.v7.widget.Toolbar;
 
 import com.bromancelabs.locationlab.R;
 
+import butterknife.ButterKnife;
+import butterknife.FindView;
+
 public abstract class BaseActivity extends AppCompatActivity {
+    @FindView(R.id.action_toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.action_toolbar);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
 
