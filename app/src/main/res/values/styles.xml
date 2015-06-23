@@ -23,6 +23,7 @@
     <style name="LocationHeader" parent="WrapContent">
         <item name="android:textAppearance">?android:textAppearanceLarge</item>
         <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:gravity">center</item>
         <item name="android:layout_marginBottom">@dimen/location_header_marginBottom</item>
     </style>
     

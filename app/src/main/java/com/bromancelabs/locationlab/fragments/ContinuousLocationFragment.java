@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.FindView;
 
 public class ContinuousLocationFragment extends BaseFragment implements LocationListener {
+    @FindView(R.id.txtLocationHeader) TextView header;
     @FindView(R.id.txtLatitude) TextView txtLatitude;
     @FindView(R.id.txtLongitude) TextView txtLongitude;
     @FindView(R.id.txtUpdatedTime) TextView txtUpdatedTime;
@@ -43,6 +44,9 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
         ButterKnife.bind(this, view);
 
         buildGoogleApiClient();
+
+        header.setText(getString(R.string.device_location) + " updated every " +
+                (LOCATION_FASTEST_UPDATE_INTERVAL/LOCATION_UPDATE_INTERVAL) + " seconds");
 
         return view;
     }
