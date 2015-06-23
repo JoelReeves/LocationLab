@@ -3,7 +3,6 @@ package com.bromancelabs.locationlab.fragments;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,15 +23,13 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.FindView;
 
-public class ContinuousLocationFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class ContinuousLocationFragment extends BaseFragment implements LocationListener {
     @FindView(R.id.txtLatitude) TextView txtLatitude;
     @FindView(R.id.txtLongitude) TextView txtLongitude;
     @FindView(R.id.txtUpdatedTime) TextView txtUpdatedTime;
     private static final String TAG = ContinuousLocationFragment.class.getSimpleName();
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
-    private GoogleApiClient googleApiClient;
 
     public ContinuousLocationFragment() {};
 
@@ -45,12 +42,7 @@ public class ContinuousLocationFragment extends Fragment implements GoogleApiCli
 
         ButterKnife.bind(this, view);
 
-        // Created instance of Google API client using Location Services
-        googleApiClient = new GoogleApiClient.Builder(getActivity())
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
+        buildGoogleApiClient();
 
         return view;
     }
@@ -73,6 +65,15 @@ public class ContinuousLocationFragment extends Fragment implements GoogleApiCli
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    // creates instance of Google API client using Location Services
+    protected synchronized void buildGoogleApiClient() {
+        googleApiClient = new GoogleApiClient.Builder(getActivity())
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
     }
 
     @Override
