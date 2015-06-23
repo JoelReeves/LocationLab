@@ -9,15 +9,18 @@
     <!-- RecyclerView -->
     <string name="recyclerview_header">Tap each item to go to an activity demonstrating Google location APIs</string>
 
-    <string name="activity_fusedlocationapi">LocationServices</string>
-    <string name="activity_fusedlocationapi_descripion">Using LocationServices API to update device\'s location every 5 seconds</string>
+    <string name="activity_locationservices">LocationServices</string>
+    <string name="activity_continuouslocation_descripion">Using LocationServices API to update device\'s location every 5 seconds</string>
+    <string name="activity_singlelocation_descripion">Using LocationServices API to update device\'s location only once</string>
 
     <string-array name="activity_names">
-        <item>@string/activity_fusedlocationapi</item>
+        <item>@string/activity_locationservices</item>
+        <item>@string/activity_locationservices</item>
     </string-array>
 
     <string-array name="activity_descriptions">
-        <item>@string/activity_fusedlocationapi_descripion</item>
+        <item>@string/activity_continuouslocation_descripion</item>
+        <item>@string/activity_singlelocation_descripion</item>
     </string-array>
 
     <!-- LocationServices -->

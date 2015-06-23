@@ -24,24 +24,24 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.FindView;
 
-public class LocationServicesFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks,
+public class ContinuousLocationFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
     @FindView(R.id.txtLatitude) TextView txtLatitude;
     @FindView(R.id.txtLongitude) TextView txtLongitude;
     @FindView(R.id.txtUpdatedTime) TextView txtUpdatedTime;
-    private static final String TAG = LocationServicesFragment.class.getSimpleName();
+    private static final String TAG = ContinuousLocationFragment.class.getSimpleName();
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
     private GoogleApiClient googleApiClient;
 
-    public LocationServicesFragment() {};
+    public ContinuousLocationFragment() {};
 
-    public static LocationServicesFragment newInstance() {return new LocationServicesFragment();}
+    public static ContinuousLocationFragment newInstance() {return new ContinuousLocationFragment();}
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_location_services, container, false);
+        View view = inflater.inflate(R.layout.fragment_location_continuous, container, false);
 
         ButterKnife.bind(this, view);
 

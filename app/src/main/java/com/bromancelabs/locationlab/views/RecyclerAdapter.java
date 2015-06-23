@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bromancelabs.locationlab.R;
-import com.bromancelabs.locationlab.activities.LocationServicesActivity;
+import com.bromancelabs.locationlab.activities.ContinuousLocationActivity;
+import com.bromancelabs.locationlab.activities.SingleLocationActivity;
 import com.bromancelabs.locationlab.models.RecyclerItem;
 
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private ArrayList<RecyclerItem> recyclerItems;
 
     public RecyclerAdapter(ArrayList<RecyclerItem> recyclerItems) {
-        if (recyclerItems == null) {
-            throw new IllegalArgumentException("Parameters cannot be null");
+        if (recyclerItems == null || recyclerItems.size() == 0) {
+            throw new IllegalArgumentException("Parameter cannot be null or empty");
         }
 
         this.recyclerItems = recyclerItems;
@@ -91,9 +92,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             if (v instanceof TextView) {
                 switch (holder.getLayoutPosition()) {
                     case 0:
-                        intent = new Intent(context, LocationServicesActivity.class);
+                        intent = new Intent(context, ContinuousLocationActivity.class);
                         context.startActivity(intent);
                         break;
+                    case 1:
+                        intent = new Intent(context, SingleLocationActivity.class);
+                        context.startActivity(intent);
                 }
             }
         }

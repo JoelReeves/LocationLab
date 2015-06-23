@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <include
+        android:id="@+id/layoutContinouos"
+        layout="@layout/layout_location"/>
+
+    <TextView
+        android:id="@+id/txtUpdatedTime"
+        style="@style/LocationItem"
+        android:layout_below="@id/layoutContinouos"/>
+
+</RelativeLayout>

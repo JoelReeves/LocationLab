@@ -3,8 +3,9 @@ package com.bromancelabs.locationlab;
 import android.app.Activity;
 
 import com.bromancelabs.locationlab.activities.BaseActivity;
-import com.bromancelabs.locationlab.activities.LocationServicesActivity;
+import com.bromancelabs.locationlab.activities.ContinuousLocationActivity;
 import com.bromancelabs.locationlab.activities.RecyclerViewActivity;
+import com.bromancelabs.locationlab.activities.SingleLocationActivity;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,8 @@ import static org.junit.Assert.assertTrue;
 public class ActivityTests {
 
     private Activity recyclerViewActivity;
-    private Activity locationServicesActivity;
+    private Activity continuousLocationActivity;
+    private Activity singleLocationActivity;
 
     @Before
     public void setup() throws Exception {
@@ -31,7 +33,13 @@ public class ActivityTests {
                 .resume()
                 .get();
 
-        locationServicesActivity = Robolectric.buildActivity(LocationServicesActivity.class)
+        continuousLocationActivity = Robolectric.buildActivity(ContinuousLocationActivity.class)
+                .create()
+                .start()
+                .resume()
+                .get();
+
+        singleLocationActivity = Robolectric.buildActivity(SingleLocationActivity.class)
                 .create()
                 .start()
                 .resume()
@@ -45,8 +53,14 @@ public class ActivityTests {
     }
 
     @Test
-    public void locationServicesActivityNotNull() throws Exception {
-        assertNotNull(locationServicesActivity);
-        assertTrue(locationServicesActivity instanceof BaseActivity);
+    public void continuousLocationActivityNotNull() throws Exception {
+        assertNotNull(continuousLocationActivity);
+        assertTrue(continuousLocationActivity instanceof BaseActivity);
+    }
+
+    @Test
+    public void singleLocationActivityNotNull() throws Exception {
+        assertNotNull(singleLocationActivity);
+        assertTrue(singleLocationActivity instanceof BaseActivity);
     }
 }

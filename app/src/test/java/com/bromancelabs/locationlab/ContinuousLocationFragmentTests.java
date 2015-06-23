@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bromancelabs.locationlab.fragments.LocationServicesFragment;
+import com.bromancelabs.locationlab.fragments.ContinuousLocationFragment;
 import com.bromancelabs.locationlab.support.ResourceLocator;
 
 import org.junit.Before;
@@ -21,7 +21,7 @@ import static org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFr
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-public class LocationServicesFragmentTests {
+public class ContinuousLocationFragmentTests {
 
     private Fragment fragment;
     private TextView locationHeader;
@@ -31,7 +31,7 @@ public class LocationServicesFragmentTests {
 
     @Before
     public void setup() throws Exception {
-        fragment = LocationServicesFragment.newInstance();
+        fragment = ContinuousLocationFragment.newInstance();
         startFragment(fragment);
 
         locationHeader = (TextView) getViewById(R.id.txtLocationHeader);
@@ -43,7 +43,7 @@ public class LocationServicesFragmentTests {
     @Test
     public void fragmentNotNull() throws Exception {
         assertNotNull(fragment);
-        assertTrue(fragment instanceof LocationServicesFragment);
+        assertTrue(fragment instanceof ContinuousLocationFragment);
     }
 
     @Test
