@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bromancelabs.locationlab.fragments.BaseFragment;
-import com.bromancelabs.locationlab.fragments.ContinuousLocationFragment;
+import com.bromancelabs.locationlab.fragments.SingleLocationFragment;
 import com.bromancelabs.locationlab.support.ResourceLocator;
 
 import org.junit.Before;
@@ -22,23 +22,20 @@ import static org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFr
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-public class ContinuousLocationFragmentTests {
-
+public class SingleLocationFragmentTests {
     private Fragment fragment;
-    private TextView locationHeader;
+    private TextView headerText;
     private TextView latitude;
     private TextView longitude;
-    private TextView updatedTime;
 
     @Before
     public void setup() throws Exception {
-        fragment = ContinuousLocationFragment.newInstance();
+        fragment = SingleLocationFragment.newInstance();
         startFragment(fragment);
 
-        locationHeader = (TextView) getViewById(R.id.txtLocationHeader);
+        headerText = (TextView) getViewById(R.id.txtLocationHeader);
         latitude = (TextView) getViewById(R.id.txtLatitude);
         longitude = (TextView) getViewById(R.id.txtLongitude);
-        updatedTime = (TextView) getViewById(R.id.txtUpdatedTime);
     }
 
     @Test
@@ -47,10 +44,11 @@ public class ContinuousLocationFragmentTests {
         assertTrue(fragment instanceof BaseFragment);
     }
 
+
     @Test
     public void shouldHaveHeaderText() throws Exception {
-        assertViewIsVisible(locationHeader);
-        assertEquals(getViewString(locationHeader), ResourceLocator.getString(R.string.device_location));
+        assertViewIsVisible(headerText);
+        assertEquals(getViewString(headerText), ResourceLocator.getString(R.string.device_location));
     }
 
     @Test
@@ -61,11 +59,6 @@ public class ContinuousLocationFragmentTests {
     @Test
     public void longitudeTextIsVisible() throws Exception {
         assertViewIsVisible(longitude);
-    }
-
-    @Test
-    public void updatedTimeTextIsVisible() throws Exception {
-        assertViewIsVisible(updatedTime);
     }
 
     private View getViewById(int id) {

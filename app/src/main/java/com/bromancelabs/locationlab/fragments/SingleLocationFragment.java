@@ -1,5 +1,6 @@
 package com.bromancelabs.locationlab.fragments;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -47,9 +48,11 @@ public class SingleLocationFragment extends BaseFragment {
 
     @Override
     public void onStop() {
-        // disconnect the client
-        googleApiClient.disconnect();
         super.onStop();
+        // disconnect the client if connected
+        if (googleApiClient.isConnected()) {
+            googleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -69,7 +72,16 @@ public class SingleLocationFragment extends BaseFragment {
 
     @Override
     public void onConnected(Bundle bundle) {
+        // obtaining last known location and populating results into the textfields
+        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
+        if (lastLocation != null) {
+            txtLatitude.setText("Latitude: " + String.valueOf(lastLocation.getLatitude()));
+            txtLongitude.setText("Longitude: " + String.valueOf(lastLocation.getLongitude()));
+        } else {
+            txtLatitude.setText("Latitude: unknown");
+            txtLongitude.setText("Longitude: unknown");
+        }
     }
 
     @Override

@@ -31,7 +31,7 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
 
-    public ContinuousLocationFragment() {};
+    public ContinuousLocationFragment() {}
 
     public static ContinuousLocationFragment newInstance() {return new ContinuousLocationFragment();}
 
@@ -56,9 +56,11 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
 
     @Override
     public void onStop() {
-        // disconnect the client
-        googleApiClient.disconnect();
         super.onStop();
+        // disconnect the client if connected
+        if (googleApiClient.isConnected()) {
+            googleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -81,7 +83,7 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
 
         // sets up a location request w/ high accuracy and update interval in milliseconds
         // also sets the fastest rate in milliseconds which the app can handle location updates
-        LocationRequest locationRequest = new LocationRequest();
+        LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(LOCATION_UPDATE_INTERVAL);
         locationRequest.setFastestInterval(LOCATION_FASTEST_UPDATE_INTERVAL);
@@ -93,13 +95,10 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
 
     @Override
     public void onLocationChanged(Location location) {
-        final String latitude = String.valueOf(location.getLatitude());
-        final String longitude = String.valueOf(location.getLongitude());
-        final String updateTime = DateFormat.getTimeInstance().format(new Date());
-
-        txtLatitude.setText("Latitude: " + latitude);
-        txtLongitude.setText("Longitude: " + longitude);
-        txtUpdatedTime.setText("Last Updated: " + updateTime);
+        // when location changes populate the textfields with: latitude, longitude, and updated time
+        txtLatitude.setText("Latitude: " + String.valueOf(location.getLatitude()));
+        txtLongitude.setText("Longitude: " + String.valueOf(location.getLongitude()));
+        txtUpdatedTime.setText("Last Updated: " + DateFormat.getTimeInstance().format(new Date()));
     }
 
     @Override

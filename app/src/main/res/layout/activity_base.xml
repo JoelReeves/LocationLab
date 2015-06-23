@@ -3,9 +3,6 @@
     android:id="@+id/fragment_container"
     style="@style/MatchParent">
 
-    <!--<include-->
-        <!--layout="@layout/layout_toolbar"/>-->
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/action_toolbar"
         style="@style/MatchWidthWrapHeight"
