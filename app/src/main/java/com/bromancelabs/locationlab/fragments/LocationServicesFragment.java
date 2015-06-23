@@ -33,7 +33,6 @@ public class LocationServicesFragment extends Fragment implements GoogleApiClien
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
     private GoogleApiClient googleApiClient;
-    private LocationRequest locationRequest;
 
     public LocationServicesFragment() {};
 
@@ -81,7 +80,7 @@ public class LocationServicesFragment extends Fragment implements GoogleApiClien
 
         // sets up a location request w/ high accuracy and update interval in milliseconds
         // also sets the fastest rate in milliseconds which the app can handle location updates
-        locationRequest = new LocationRequest();
+        LocationRequest locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(LOCATION_UPDATE_INTERVAL);
         locationRequest.setFastestInterval(LOCATION_FASTEST_UPDATE_INTERVAL);

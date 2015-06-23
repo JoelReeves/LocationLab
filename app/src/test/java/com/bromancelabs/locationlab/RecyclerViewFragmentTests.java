@@ -25,7 +25,7 @@ import static org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFr
 public class RecyclerViewFragmentTests {
 
     private Fragment fragment;
-    private TextView header;
+    private TextView recyclerViewheader;
     private RecyclerView recyclerView;
 
     @Before
@@ -34,7 +34,7 @@ public class RecyclerViewFragmentTests {
         startFragment(fragment);
 
         recyclerView = (RecyclerView) getViewById(R.id.recyclerView);
-        header = (TextView) getViewById(R.id.recyclerviewHeader);
+        recyclerViewheader = (TextView) getViewById(R.id.recyclerviewHeader);
     }
 
     @Test
@@ -50,8 +50,8 @@ public class RecyclerViewFragmentTests {
 
     @Test
     public void shouldHaveHeaderText() throws Exception {
-        assertNotNull(header);
-        assertEquals(getViewString(header), ResourceLocator.getString(R.string.recyclerview_header));
+        assertViewIsVisible(recyclerViewheader);
+        assertEquals(getViewString(recyclerViewheader), ResourceLocator.getString(R.string.recyclerview_header));
     }
 
     @Test
