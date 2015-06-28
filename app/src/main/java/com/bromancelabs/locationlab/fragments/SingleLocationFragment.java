@@ -15,12 +15,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.FindView;
 
 public class SingleLocationFragment extends BaseFragment {
-    @FindView(R.id.txtLatitude) TextView txtLatitude;
-    @FindView(R.id.txtLongitude) TextView txtLongitude;
+    @Bind(R.id.txtLatitude) TextView txtLatitude;
+    @Bind(R.id.txtLongitude) TextView txtLongitude;
     private static final String TAG = SingleLocationFragment.class.getSimpleName();
 
     public SingleLocationFragment() {}

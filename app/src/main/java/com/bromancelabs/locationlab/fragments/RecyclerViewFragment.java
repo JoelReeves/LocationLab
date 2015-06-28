@@ -17,11 +17,11 @@ import com.bromancelabs.locationlab.views.RecyclerAdapter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.FindView;
 
 public class RecyclerViewFragment extends Fragment {
-    @FindView(R.id.recyclerView) RecyclerView recyclerView;
+    @Bind(R.id.recyclerView) RecyclerView recyclerView;
     private ArrayList<RecyclerItem> recyclerItems = new ArrayList<>();
 
     public RecyclerViewFragment() {}

@@ -4,20 +4,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.bromancelabs.locationlab.R;
-import com.bromancelabs.locationlab.fragments.SingleLocationFragment;
+import com.bromancelabs.locationlab.fragments.MapsFragment;
 
-public class SingleLocationActivity extends BaseActivity {
-
+public class MapsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setActionBarTitle(R.string.toolbar_location_services);
+        setActionBarTitle(R.string.toolbar_maps);
 
         setBackNavigation();
     }
 
     @Override
     protected Fragment createFragment() {
-        return SingleLocationFragment.newInstance();
+        return MapsFragment.newInstance();
     }
 }

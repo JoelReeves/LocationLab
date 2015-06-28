@@ -3,6 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="buttons_layoutPadding">10dp</dimen>
+    <dimen name="button_strokeWidth">1dp</dimen>
+    <dimen name="button_cornerRadius">30dp</dimen>
+
     <dimen name="header_marginTop">60dp</dimen>
     <dimen name="header_marginBottom">20dp</dimen>
 

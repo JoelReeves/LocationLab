@@ -11,7 +11,7 @@ public class RecyclerViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setActionBarTitle(R.string.choose_activity);
+        setActionBarTitle(R.string.toolbar_choose_api);
     }
 
     @Override

@@ -20,14 +20,14 @@ import com.google.android.gms.location.LocationServices;
 import java.text.DateFormat;
 import java.util.Date;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.FindView;
 
 public class ContinuousLocationFragment extends BaseFragment implements LocationListener {
-    @FindView(R.id.txtLocationHeader) TextView header;
-    @FindView(R.id.txtLatitude) TextView txtLatitude;
-    @FindView(R.id.txtLongitude) TextView txtLongitude;
-    @FindView(R.id.txtUpdatedTime) TextView txtUpdatedTime;
+    @Bind(R.id.txtLocationHeader) TextView header;
+    @Bind(R.id.txtLatitude) TextView txtLatitude;
+    @Bind(R.id.txtLongitude) TextView txtLongitude;
+    @Bind(R.id.txtUpdatedTime) TextView txtUpdatedTime;
     private static final String TAG = ContinuousLocationFragment.class.getSimpleName();
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
@@ -46,7 +46,7 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
         buildGoogleApiClient();
 
         header.setText(getString(R.string.device_location) + " updated every " +
-                (LOCATION_FASTEST_UPDATE_INTERVAL/LOCATION_UPDATE_INTERVAL) + " seconds");
+                (LOCATION_FASTEST_UPDATE_INTERVAL / LOCATION_UPDATE_INTERVAL) + " seconds");
 
         return view;
     }

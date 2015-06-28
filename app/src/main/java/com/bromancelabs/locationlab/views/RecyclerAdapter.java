@@ -10,13 +10,14 @@ import android.widget.TextView;
 
 import com.bromancelabs.locationlab.R;
 import com.bromancelabs.locationlab.activities.ContinuousLocationActivity;
+import com.bromancelabs.locationlab.activities.MapsActivity;
 import com.bromancelabs.locationlab.activities.SingleLocationActivity;
 import com.bromancelabs.locationlab.models.RecyclerItem;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.FindView;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
     private ArrayList<RecyclerItem> recyclerItems;
@@ -62,8 +63,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     // Create the ViewHolder class to keep references to your views
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @FindView(R.id.txtActivityName) TextView activityName;
-        @FindView(R.id.txtActivityDescription) TextView activityDescription;
+        @Bind(R.id.txtActivityName) TextView activityName;
+        @Bind(R.id.txtActivityDescription) TextView activityDescription;
 
         public ViewHolder(View view) {
             super(view);
@@ -77,7 +78,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public void onClick(View v) {
             ViewHolder holder = (ViewHolder) v.getTag();
 
-            final Intent intent;
             final Context context = v.getContext();
 
             /*if (v.getId() == holder.activityName.getId() || v.getId() == holder.activityDescription.getId()) {
@@ -92,12 +92,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             if (v instanceof TextView) {
                 switch (holder.getLayoutPosition()) {
                     case 0:
-                        intent = new Intent(context, ContinuousLocationActivity.class);
-                        context.startActivity(intent);
+                        context.startActivity(new Intent(context, ContinuousLocationActivity.class));
                         break;
                     case 1:
-                        intent = new Intent(context, SingleLocationActivity.class);
-                        context.startActivity(intent);
+                        context.startActivity(new Intent(context, SingleLocationActivity.class));
+                        break;
+                    case 2:
+                        context.startActivity(new Intent(context, MapsActivity.class));
+                        break;
                 }
             }
         }

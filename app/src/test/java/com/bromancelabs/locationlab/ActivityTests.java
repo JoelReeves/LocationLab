@@ -2,6 +2,7 @@ package com.bromancelabs.locationlab;
 
 import android.app.Activity;
 
+import com.bromancelabs.locationlab.activities.MapsActivity;
 import com.bromancelabs.locationlab.activities.BaseActivity;
 import com.bromancelabs.locationlab.activities.ContinuousLocationActivity;
 import com.bromancelabs.locationlab.activities.RecyclerViewActivity;
@@ -24,6 +25,7 @@ public class ActivityTests {
     private Activity recyclerViewActivity;
     private Activity continuousLocationActivity;
     private Activity singleLocationActivity;
+    private Activity mapsActivity;
 
     @Before
     public void setup() throws Exception {
@@ -40,6 +42,12 @@ public class ActivityTests {
                 .get();
 
         singleLocationActivity = Robolectric.buildActivity(SingleLocationActivity.class)
+                .create()
+                .start()
+                .resume()
+                .get();
+
+        mapsActivity = Robolectric.buildActivity(MapsActivity.class)
                 .create()
                 .start()
                 .resume()
@@ -62,5 +70,11 @@ public class ActivityTests {
     public void singleLocationActivityNotNull() throws Exception {
         assertNotNull(singleLocationActivity);
         assertTrue(singleLocationActivity instanceof BaseActivity);
+    }
+
+    @Test
+    public void mapsActivityNotNull() throws Exception {
+        assertNotNull(mapsActivity);
+        assertTrue(mapsActivity instanceof BaseActivity);
     }
 }

@@ -11,7 +11,7 @@ public class ContinuousLocationActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setActionBarTitle(R.string.location_services);
+        setActionBarTitle(R.string.toolbar_location_services);
 
         setBackNavigation();
     }

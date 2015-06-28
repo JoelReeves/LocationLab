@@ -2,8 +2,9 @@
     <string name="app_name">LocationLab</string>
 
     <!-- Toolbar titles -->
-    <string name="choose_activity">Choose Google API</string>
-    <string name="location_services">Location Services</string>
+    <string name="toolbar_choose_api">Choose Google API</string>
+    <string name="toolbar_location_services">Location Services</string>
+    <string name="toolbar_maps">Maps</string>
 
     <!-- RecyclerView -->
     <string name="recyclerview_header">Tap each item to go to an activity demonstrating Google location APIs</string>
@@ -12,16 +13,27 @@
     <string name="activity_continuouslocation_descripion">Using LocationServices API to update device\'s location at a set interval</string>
     <string name="activity_singlelocation_descripion">Using LocationServices API to update device\'s location upon creation</string>
 
+    <string name="activity_maps">Maps</string>
+    <string name="activity_maps_description">Using Maps API to show device\'s location on a map</string>
+
     <string-array name="activity_names">
         <item>@string/activity_locationservices</item>
         <item>@string/activity_locationservices</item>
+        <item>@string/activity_maps</item>
     </string-array>
 
     <string-array name="activity_descriptions">
         <item>@string/activity_continuouslocation_descripion</item>
         <item>@string/activity_singlelocation_descripion</item>
+        <item>@string/activity_maps_description</item>
     </string-array>
 
     <!-- LocationServices -->
     <string name="device_location">Device\'s Location</string>
+
+    <!-- Maps -->
+    <string name="mapNormal">Normal</string>
+    <string name="mapSatellite">Satellite</string>
+    <string name="mapHybrid">Hybrid</string>
+
 </resources>
