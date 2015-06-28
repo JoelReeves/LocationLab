@@ -9,11 +9,11 @@ import android.view.MenuItem;
 
 import com.bromancelabs.locationlab.R;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.FindView;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    @FindView(R.id.action_toolbar) Toolbar toolbar;
+    @Bind(R.id.action_toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
