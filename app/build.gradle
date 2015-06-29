@@ -7,7 +7,6 @@ repositories {
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
     defaultConfig {
         applicationId "com.bromancelabs.locationlab"
         minSdkVersion 15
@@ -34,19 +33,18 @@ tasks.withType(Test) {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:design:22.2.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
     compile 'com.jakewharton:butterknife:7.0.0'
     compile 'com.google.android.gms:play-services-location:7.5.0'
     compile 'com.google.android.gms:play-services-maps:7.5.0'
-
     testCompile 'junit:junit:4.12'
-    testCompile ('org.robolectric:robolectric:3.0-SNAPSHOT') {
+    testCompile('org.robolectric:robolectric:3.0-SNAPSHOT') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    testCompile ('org.robolectric:shadows-support-v4:3.0-SNAPSHOT') {
+    testCompile('org.robolectric:shadows-support-v4:3.0-SNAPSHOT') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }

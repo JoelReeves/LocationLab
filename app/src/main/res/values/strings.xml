@@ -5,6 +5,7 @@
     <string name="toolbar_choose_api">Choose Google API</string>
     <string name="toolbar_location_services">Location Services</string>
     <string name="toolbar_maps">Maps</string>
+    <string name="toolbar_streetview">Street View</string>
 
     <!-- RecyclerView -->
     <string name="recyclerview_header">Tap each item to go to an activity demonstrating Google location APIs</string>
@@ -15,17 +16,21 @@
 
     <string name="activity_maps">Maps</string>
     <string name="activity_maps_description">Using Maps API to show device\'s location on a map</string>
+    <string name="activity_streetview">Street View</string>
+    <string name="activity_streetview_description">Using Street View APIs to walk around your area</string>
 
     <string-array name="activity_names">
         <item>@string/activity_locationservices</item>
         <item>@string/activity_locationservices</item>
         <item>@string/activity_maps</item>
+        <item>@string/activity_streetview</item>
     </string-array>
 
     <string-array name="activity_descriptions">
         <item>@string/activity_continuouslocation_descripion</item>
         <item>@string/activity_singlelocation_descripion</item>
         <item>@string/activity_maps_description</item>
+        <item>@string/activity_streetview_description</item>
     </string-array>
 
     <!-- LocationServices -->
@@ -35,5 +40,10 @@
     <string name="mapNormal">Normal</string>
     <string name="mapSatellite">Satellite</string>
     <string name="mapHybrid">Hybrid</string>
+
+    <!-- SnackBars -->
+    <string name="network_unavailable">Please check your network connection</string>
+    <string name="maps_unavailable">Unable to display map</string>
+    <string name="location_unavailable">Unable to obtain device\'s location</string>
 
 </resources>

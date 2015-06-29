@@ -12,6 +12,7 @@ import com.bromancelabs.locationlab.R;
 import com.bromancelabs.locationlab.activities.ContinuousLocationActivity;
 import com.bromancelabs.locationlab.activities.MapsActivity;
 import com.bromancelabs.locationlab.activities.SingleLocationActivity;
+import com.bromancelabs.locationlab.activities.StreetViewActivity;
 import com.bromancelabs.locationlab.models.RecyclerItem;
 
 import java.util.ArrayList;
@@ -99,6 +100,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                         break;
                     case 2:
                         context.startActivity(new Intent(context, MapsActivity.class));
+                        break;
+                    case 3:
+                        context.startActivity(new Intent(context, StreetViewActivity.class));
                         break;
                 }
             }

@@ -7,6 +7,7 @@ import com.bromancelabs.locationlab.activities.BaseActivity;
 import com.bromancelabs.locationlab.activities.ContinuousLocationActivity;
 import com.bromancelabs.locationlab.activities.RecyclerViewActivity;
 import com.bromancelabs.locationlab.activities.SingleLocationActivity;
+import com.bromancelabs.locationlab.activities.StreetViewActivity;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,7 @@ public class ActivityTests {
     private Activity continuousLocationActivity;
     private Activity singleLocationActivity;
     private Activity mapsActivity;
+    private Activity streetViewActivity;
 
     @Before
     public void setup() throws Exception {
@@ -48,6 +50,12 @@ public class ActivityTests {
                 .get();
 
         mapsActivity = Robolectric.buildActivity(MapsActivity.class)
+                .create()
+                .start()
+                .resume()
+                .get();
+
+        streetViewActivity = Robolectric.buildActivity(StreetViewActivity.class)
                 .create()
                 .start()
                 .resume()
@@ -76,5 +84,11 @@ public class ActivityTests {
     public void mapsActivityNotNull() throws Exception {
         assertNotNull(mapsActivity);
         assertTrue(mapsActivity instanceof BaseActivity);
+    }
+
+    @Test
+    public void streetViewActivityNotNull() throws Exception {
+        assertNotNull(streetViewActivity);
+        assertTrue(streetViewActivity instanceof BaseActivity);
     }
 }
