@@ -59,10 +59,11 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        // disconnect the client if connected
+    public void onPause() {
+        super.onPause();
+        // stops requesting location updates & disconnect the client if connected
         if (googleApiClient.isConnected()) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
             googleApiClient.disconnect();
         }
     }

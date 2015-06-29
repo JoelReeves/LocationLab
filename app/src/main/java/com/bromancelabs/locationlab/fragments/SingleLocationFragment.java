@@ -47,8 +47,8 @@ public class SingleLocationFragment extends BaseFragment {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         // disconnect the client if connected
         if (googleApiClient.isConnected()) {
             googleApiClient.disconnect();

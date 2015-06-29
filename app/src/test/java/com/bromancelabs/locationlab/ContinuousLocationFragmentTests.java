@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.bromancelabs.locationlab.fragments.BaseFragment;
 import com.bromancelabs.locationlab.fragments.ContinuousLocationFragment;
-import com.bromancelabs.locationlab.support.ResourceLocator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -50,7 +49,7 @@ public class ContinuousLocationFragmentTests {
     @Test
     public void shouldHaveHeaderText() throws Exception {
         assertViewIsVisible(locationHeader);
-        assertEquals(getViewString(locationHeader), ResourceLocator.getString(R.string.device_location));
+        assertEquals(getViewString(locationHeader), "Device's Location updated every 5 seconds");
     }
 
     @Test
