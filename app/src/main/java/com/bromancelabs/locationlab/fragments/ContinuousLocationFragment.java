@@ -10,10 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bromancelabs.locationlab.R;
-import com.bromancelabs.locationlab.util.PlayServicesUtil;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
@@ -23,14 +19,14 @@ import java.util.Date;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ContinuousLocationFragment extends BaseFragment implements LocationListener {
+public class ContinuousLocationFragment extends LocationFragment {
     @Bind(R.id.txtLocationHeader) TextView header;
     @Bind(R.id.txtLatitude) TextView txtLatitude;
     @Bind(R.id.txtLongitude) TextView txtLongitude;
     @Bind(R.id.txtUpdatedTime) TextView txtUpdatedTime;
-    private static final String TAG = ContinuousLocationFragment.class.getSimpleName();
     private static final long LOCATION_UPDATE_INTERVAL = 1000;
     private static final long LOCATION_FASTEST_UPDATE_INTERVAL = 5000;
+    private static final String TAG = ContinuousLocationFragment.class.getSimpleName();
 
     public ContinuousLocationFragment() {}
 
@@ -43,8 +39,6 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
 
         ButterKnife.bind(this, view);
 
-        buildGoogleApiClient();
-
         header.setText(getString(R.string.device_location) + " updated every " +
                 (LOCATION_FASTEST_UPDATE_INTERVAL / LOCATION_UPDATE_INTERVAL) + " seconds");
 
@@ -52,35 +46,9 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        // connect the client
-        googleApiClient.connect();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        // stops requesting location updates & disconnect the client if connected
-        if (googleApiClient.isConnected()) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
-            googleApiClient.disconnect();
-        }
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    // creates instance of Google API client using Location Services
-    protected synchronized void buildGoogleApiClient() {
-        googleApiClient = new GoogleApiClient.Builder(getActivity())
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
     }
 
     @Override
@@ -99,22 +67,12 @@ public class ContinuousLocationFragment extends BaseFragment implements Location
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    protected void getNewLocation(Location location) {
+        Log.d(TAG, "Location: " + location.toString());
+
         // when location changes populate the textfields with: latitude, longitude, and updated time
         txtLatitude.setText("Latitude: " + String.valueOf(location.getLatitude()));
         txtLongitude.setText("Longitude: " + String.valueOf(location.getLongitude()));
         txtUpdatedTime.setText("Last Updated: " + DateFormat.getTimeInstance().format(new Date()));
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.d(TAG, "GoogleApiClient connection suspended");
-
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.d(TAG, "GoogleApiClient connection failed: " + connectionResult.toString());
-        PlayServicesUtil.displayGoogleErrorDialog(getActivity(), connectionResult.getErrorCode());
     }
 }
